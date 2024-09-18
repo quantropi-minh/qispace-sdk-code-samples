@@ -1,3 +1,5 @@
+# QiSpaceSdkLib requirements
 requests
-base64
-binascii
+
+# demo requirements
+python-dotenv

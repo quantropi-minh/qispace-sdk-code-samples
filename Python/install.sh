@@ -1,3 +1,3 @@
 #! /bin/bash
-pip install -r requirements.txt
-pip install lib/qeep-*.whl
+pip3 install -r requirements.txt
+pip3 install lib/qeep-*.whl
