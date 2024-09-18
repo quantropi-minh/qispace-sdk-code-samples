@@ -12,3 +12,4 @@ debug
 
 go/lib/*
 go/.env
+*/**/__pycache__
