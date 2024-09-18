@@ -28,7 +28,7 @@ class SequrUtil:
     ).json()
 
     key_id = response["id"]
-    decryptedQk = self.__qeepDecrypt__(response["payload"], response["iv"])
+    decryptedQk = self.__qeep_decrypt__(response["payload"], response["iv"])
 
     return (key_id, decryptedQk)
 
@@ -38,11 +38,11 @@ class SequrUtil:
       headers={"Authorization": f"Bearer {self.device_token}"},
     ).json()
 
-    decryptedQk = self.__qeepDecrypt__(response["payload"], response["iv"])
+    decryptedQk = self.__qeep_decrypt__(response["payload"], response["iv"])
 
     return (key_id, decryptedQk)
 
-  def __qeepDecrypt__(self, base64_cipher, iv):
+  def __qeep_decrypt__(self, base64_cipher, iv):
     self.qeepQSC.set_iv(
       base64.b64decode(iv.encode('utf-8'))
     )
