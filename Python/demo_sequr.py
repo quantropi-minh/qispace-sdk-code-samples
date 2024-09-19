@@ -7,14 +7,14 @@ config = dotenv_values(".env")
 
 #########
 # Initialize two different devices
-device_1_sequr_util = SequrUtil(
-  config["QISPACE_ENTERPRISE_URL"],
-  config["DEVICE_1_TOKEN"],
-)
-device_2_sequr_util = SequrUtil(
-  config["QISPACE_ENTERPRISE_URL"],
-  config["DEVICE_2_TOKEN"],
-)
+device_1_sequr_util = SequrUtil({
+  "url": config["QISPACE_ENTERPRISE_URL"],
+  "device_token": config["DEVICE_1_TOKEN"],
+})
+device_2_sequr_util = SequrUtil({
+  "url": config["QISPACE_ENTERPRISE_URL"],
+  "device_token": config["DEVICE_2_TOKEN"],
+})
 #########
 
 print("")

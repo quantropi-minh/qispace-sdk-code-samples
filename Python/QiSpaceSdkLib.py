@@ -5,14 +5,13 @@ from qeep import QeepQSC
 
 class SequrUtil:
  
-  def __init__(self, url, device_token, pub_key=None):
-    self.url = url
-    self.device_token = device_token
+  def __init__(self, qispace_meta):
+    self.url = qispace_meta["url"]
+    self.device_token = qispace_meta["device_token"]
 
     response = requests.post(
       f"{self.url}/sub_key",
       headers={"Authorization": f"Bearer {self.device_token}"},
-      json={"pub_key": pub_key}
     ).json()
 
     self.qeepQSC = QeepQSC(response["key_index"])
