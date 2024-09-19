@@ -23,7 +23,7 @@ print("")
 # Device 1 generates new QK
 key_id, qk_device_1 = device_1_sequr_util.key_gen(1024)
 print(f"--- Device 1 generates QK with key_id {key_id}")
-print(f"------ key hex: {hexlify(qk_device_1).decode('utf-8')[0:20]}...")
+print(f"------ key hex: { hexlify(qk_device_1).decode('utf-8')[0:10] }...{ hexlify(qk_device_1).decode('utf-8')[len(qk_device_1)-10:len(qk_device_1)] }")
 #########
 
 print("")
@@ -38,9 +38,7 @@ print("")
 # Device 2 queries for QK using key_id given to Device 1
 _, qk_device_2 = device_2_sequr_util.query_key(key_id)
 print(f"--- Device 2 queries for QK with key_id {key_id}, received key ")
-print(f"------ key hex: {hexlify(qk_device_2).decode('utf-8')[0:20]}...")
+print(f"------ key hex: { hexlify(qk_device_2).decode('utf-8')[0:10] }...{ hexlify(qk_device_2).decode('utf-8')[len(qk_device_2)-10:len(qk_device_2)] }")
 #########
 
 print("")
-
-print(f"Key contents are the same? {qk_device_1 == qk_device_2}")
