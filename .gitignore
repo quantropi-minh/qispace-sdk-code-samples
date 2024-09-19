@@ -15,4 +15,3 @@ go/.env
 
 python/lib/*
 */**/__pycache__
-python/.env

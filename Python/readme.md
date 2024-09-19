@@ -3,11 +3,14 @@
 ## Sequr
 The `demo_sequr.py` file showcases a usecase of Sequr. 
 
-### Setup
-  1. Place your Qeep `.whl` library file under `lib` folder. If you do not have one, please contact Quantropi.
-  1. Install demo dependencies and libraries: `./install.sh`
-  1. Duplicate `.env_sample` file to `.env` and fill in content
-  1. Run the demo: `python demo_sequr.py`
+### Demo sequence
+  1. setup:
+    1. Place your Qeep `.whl` library file under `lib` folder. If you do not have one, please contact Quantropi.
+    1. Install demo dependencies and libraries: `./install.sh`
+    1. Duplicate `.env_sample` file to `.env` and fill in content
+  1. Generate key demo
+  1. Query key demo
+  1. Compare output from each to validate same key content
 
 ### Demo premise
 - This demo simulates two separate devices sharing a secure **Quantum Key (QK)** with each other through **QiSpace Enterprise**.

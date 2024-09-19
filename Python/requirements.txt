@@ -1,5 +1,2 @@
 # QiSpaceSdkLib requirements
 requests
-
-# demo requirements
-python-dotenv
