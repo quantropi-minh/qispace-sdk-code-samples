@@ -40,7 +40,7 @@ sequr_util = SequrUtil({
 print("")
 
 #########
-# Device 2 queries for QK using key_id given to Device 1
+# Queries for QK using key_id given to Device 1
 _, key_content = sequr_util.query_key(args.key_id)
 key_hex_string = hexlify(key_content).decode('utf-8')
 print(f"--- Queried QK with key_id {args.key_id}")
