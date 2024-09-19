@@ -7,12 +7,14 @@ import argparse
 parser = argparse.ArgumentParser("demo_sequr_key_gen.py")
 parser.add_argument(
   "--url", 
+  required=True,
   dest="url",
   help="URL for QiSpace Enterprise API. ex: https://enterprise.staging.qispace.info/kds/api/v1",
   type=str
 )
 parser.add_argument(
   "--token", 
+  required=True,
   dest="token",
   help="Device token generated from QiSpace Enterprise",
   type=str
