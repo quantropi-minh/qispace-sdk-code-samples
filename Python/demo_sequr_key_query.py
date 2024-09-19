@@ -38,9 +38,10 @@ print("")
 
 #########
 # Device 2 queries for QK using key_id given to Device 1
-_, qk_device_2 = sequr_util.query_key(args.key_id)
-print(f"--- Queried for QK with key_id {args.key_id}")
-print(f"------ key hex: { hexlify(qk_device_2).decode('utf-8')[0:10] }...{ hexlify(qk_device_2).decode('utf-8')[len(qk_device_2)-10:len(qk_device_2)] }")
+_, key_content = sequr_util.query_key(args.key_id)
+key_hex_string = hexlify(key_content).decode('utf-8')
+print(f"--- Queried QK with key_id {args.key_id}")
+print(f"------ key hex: { key_hex_string[0:10] }...{ key_hex_string[len(key_hex_string)-10:len(key_hex_string)] }")
 #########
 
 print("")

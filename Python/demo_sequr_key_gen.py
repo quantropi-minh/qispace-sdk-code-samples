@@ -38,9 +38,10 @@ print("")
 
 #########
 # Generates new QK
-key_id, qk_device_1 = sequr_util.key_gen(1024)
+key_id, key_content = sequr_util.key_gen(1024)
+key_hex_string = hexlify(key_content).decode('utf-8')
 print(f"--- Generated QK with key_id {key_id}")
-print(f"------ key hex: { hexlify(qk_device_1).decode('utf-8')[0:10] }...{ hexlify(qk_device_1).decode('utf-8')[len(qk_device_1)-10:len(qk_device_1)] }")
+print(f"------ key hex: { key_hex_string[0:10] }...{ key_hex_string[len(key_hex_string)-10:len(key_hex_string)] }")
 #########
 
 print("")
