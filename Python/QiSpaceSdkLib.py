@@ -4,11 +4,11 @@ import binascii
 from qeep import QeepQSC
 
 class SequrUtil:
-
-  def __init__(self, url, device_token, pub_key = None):
+ 
+  def __init__(self, url, device_token, pub_key=None):
     self.url = url
     self.device_token = device_token
-    
+
     response = requests.post(
       f"{self.url}/sub_key",
       headers={"Authorization": f"Bearer {self.device_token}"},
@@ -20,7 +20,7 @@ class SequrUtil:
       binascii.unhexlify(response["sub_key"].encode())
     )
 
-  def key_gen(self, key_size = 1024):
+  def key_gen(self, key_size=1024):
     response = requests.post(
       f"{self.url}/qk",
       headers={"Authorization": f"Bearer {self.device_token}"},
@@ -28,9 +28,12 @@ class SequrUtil:
     ).json()
 
     key_id = response["id"]
-    decryptedQk = self.__qeep_decrypt__(response["payload"], response["iv"])
+    decryptedQk = self.__qeep_decrypt__(
+      response["payload"], response["iv"]
+    )
+    raw_key = decryptedQk[18: len(decryptedQk)-4]
 
-    return (key_id, decryptedQk)
+    return (key_id, raw_key)
 
   def query_key(self, key_id):
     response = requests.get(
@@ -38,9 +41,12 @@ class SequrUtil:
       headers={"Authorization": f"Bearer {self.device_token}"},
     ).json()
 
-    decryptedQk = self.__qeep_decrypt__(response["payload"], response["iv"])
+    decryptedQk = self.__qeep_decrypt__(
+      response["payload"], response["iv"]
+    )
+    raw_key = decryptedQk[18: len(decryptedQk)-4]
 
-    return (key_id, decryptedQk)
+    return (key_id, raw_key)
 
   def __qeep_decrypt__(self, base64_cipher, iv):
     self.qeepQSC.set_iv(
