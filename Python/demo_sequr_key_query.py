@@ -29,7 +29,7 @@ sequr_util = SequrUtil(qispace_meta_content)
 #########
 
 #########
-# Queries for key using key_id given to Device 1
+# Queries for key using key_id
 _, raw_key = sequr_util.query_key(args.key_id)
 key_hex_string = hexlify(raw_key, " ").decode('utf-8')
 print("------------------------")
