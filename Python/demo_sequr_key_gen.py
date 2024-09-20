@@ -32,11 +32,12 @@ sequr_util = SequrUtil(qispace_meta_content)
 # Generate new key
 key_id, raw_key = sequr_util.key_gen(args.key_size_bits / 8)
 key_hex_string = hexlify(raw_key, " ").decode('utf-8')
+hex_string_length = len(key_hex_string)
 print("------------------------")
 print(f"Key generation successful")
 print(f"Key ID: {key_id}")
-if len(key_hex_string) > 10*3:
-  print(f"Key: {key_hex_string[0:5*3]} ... {key_hex_string[len(key_hex_string)-5*3:len(key_hex_string)]}")
+if hex_string_length > 10*3:
+  print(f"Key: {key_hex_string[0:5*3]} ... {key_hex_string[hex_string_length-5*3:hex_string_length]}")
 else:
   print(f"Key: {key_hex_string}")
 print("------------------------")
