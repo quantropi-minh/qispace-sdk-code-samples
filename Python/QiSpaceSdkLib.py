@@ -20,6 +20,9 @@ class SequrUtil:
     )
 
   def key_gen(self, key_size_bytes=32):
+    if key_size_bytes < 0:
+      raise Exception(f"key_size_bytes must be greater than 0")
+
     response = requests.post(
       f"{self.url}/qk",
       headers={"Authorization": f"Bearer {self.device_token}"},
