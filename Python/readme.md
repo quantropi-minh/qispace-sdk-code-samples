@@ -5,40 +5,47 @@
 ### Setup
   1. Place your Qeep `.whl` library file under `lib` folder. If you do not have one, please contact Quantropi.
   1. Install demo dependencies and libraries: `./install.sh`
+  1. Have your qispace meta config `.json` file from Quantropi ready. If you do not have one, please contact Quantropi.
 
 ### Running the demo
 
   1. **Generate key demo:**
       - Execute the `demo_sequr_key_gen.py` with the bellow aruments:
         ```
-        usage: demo_sequr_key_gen.py [-h] [--url URL] [--token TOKEN] [--key_size KEY_SIZE]
+        usage: demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META [--key_size_bits KEY_SIZE_BITS]
 
         options:
-          -h, --help           show this help message and exit
-          --url URL            URL for QiSpace Enterprise API. ex: https://enterprise.staging.qispace.info/kds/api/v1
-          --token TOKEN        Device token generated from QiSpace Enterprise
-          --key_size KEY_SIZE  Key size to generate
+          -h, --help            show this help message and exit
+          --qispace_meta QISPACE_META
+                                path to qispace meta .json file, provided by Quantropi
+          --key_size_bits KEY_SIZE_BITS
+                                Key size to generate (in bits, defaults: 256)
         ```
       - You might get an output as bellow:
         ```
-        --- Generated QK with key_id 0d0ed476-6af7-49b3-a3c1-49de2ac98798
-          ------ key hex: 71445a2843...0ca81bc043
+        ------------------------
+        Key generation successful
+        Key ID: 60d27860-3be1-4eae-92a3-2c10129eeb60
+        Key: 86 83 b1 57 a2  ...  b7 90 83 65 fe
+        ------------------------
         ```
   1. **Query key demo:**
       - Execute the `demo_sequr_key_query.py` with the bellow aruments:
         ```
-        usage: demo_sequr_key_gen.py [-h] [--url URL] [--token TOKEN] [--key_id KEY_ID]
+        usage: demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META --key_id KEY_ID
 
         options:
-          -h, --help       show this help message and exit
-          --url URL        URL for QiSpace Enterprise API. ex: https://enterprise.staging.qispace.info/kds/api/v1
-          --token TOKEN    Device token generated from QiSpace Enterprise
-          --key_id KEY_ID  Key ID to query
+          -h, --help            show this help message and exit
+          --qispace_meta QISPACE_META
+                                path to qispace meta .json file, provided by Quantropi
+          --key_id KEY_ID       Key ID to query
         ```
       - You might get an output as bellow:
         ```
-        --- Queried for QK with key_id 0d0ed476-6af7-49b3-a3c1-49de2ac98798
-          ------ key hex: 71445a2843...0ca81bc043
+        ------------------------
+        Key query successful
+        Key: 86 83 b1 57 a2  ...  b7 90 83 65 fe
+        ------------------------
         ```
   1. **Compare results**
 

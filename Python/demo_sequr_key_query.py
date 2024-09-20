@@ -3,20 +3,14 @@
 from QiSpaceSdkLib import SequrUtil
 from binascii import hexlify
 import argparse
+import json
 
 parser = argparse.ArgumentParser("demo_sequr_key_gen.py")
 parser.add_argument(
-  "--url",
+  "--qispace_meta",
   required=True,
-  dest="url",
-  help="URL for QiSpace Enterprise API. ex: https://enterprise.staging.qispace.info/kds/api/v1",
-  type=str
-)
-parser.add_argument(
-  "--token",
-  required=True,
-  dest="token",
-  help="Device token generated from QiSpace Enterprise",
+  dest="qispace_meta",
+  help="path to qispace meta .json file, provided by Quantropi",
   type=str
 )
 parser.add_argument(
@@ -28,23 +22,22 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-
 #########
 # Initialize device
-sequr_util = SequrUtil({
-  "url": args.url,
-  "device_token": args.token,
-})
+qispace_meta_content = json.load(open(args.qispace_meta))
+sequr_util = SequrUtil(qispace_meta_content)
 #########
 
-print("")
-
 #########
-# Queries for QK using key_id given to Device 1
-_, key_content = sequr_util.query_key(args.key_id)
-key_hex_string = hexlify(key_content).decode('utf-8')
-print(f"--- Queried QK with key_id {args.key_id}")
-print(f"------ key hex: { key_hex_string[0:10] }...{ key_hex_string[len(key_hex_string)-10:len(key_hex_string)] }")
+# Queries for key using key_id given to Device 1
+_, raw_key = sequr_util.query_key(args.key_id)
+key_hex_string = hexlify(raw_key, " ").decode('utf-8')
+print("------------------------")
+print(f"Key query successful")
+if len(key_hex_string) > 10*3:
+  print(
+      f"Key: {key_hex_string[0:5*3]} ... {key_hex_string[len(key_hex_string)-5*3:len(key_hex_string)]}")
+else:
+  print(f"Key: {key_hex_string}")
+print("------------------------")
 #########
-
-print("")

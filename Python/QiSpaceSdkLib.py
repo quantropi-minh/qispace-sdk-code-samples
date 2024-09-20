@@ -7,7 +7,7 @@ class SequrUtil:
  
   def __init__(self, qispace_meta):
     self.url = qispace_meta["url"]
-    self.device_token = qispace_meta["device_token"]
+    self.device_token = qispace_meta["token"]
 
     response = requests.post(
       f"{self.url}/sub_key",
@@ -19,11 +19,11 @@ class SequrUtil:
       binascii.unhexlify(response["sub_key"].encode())
     )
 
-  def key_gen(self, key_size=1024):
+  def key_gen(self, key_size_bytes=32):
     response = requests.post(
       f"{self.url}/qk",
       headers={"Authorization": f"Bearer {self.device_token}"},
-      json={"key_length": key_size}
+      json={"key_length": key_size_bytes}
     ).json()
 
     key_id = response["id"]

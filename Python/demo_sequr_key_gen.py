@@ -3,47 +3,41 @@
 from QiSpaceSdkLib import SequrUtil
 from binascii import hexlify
 import argparse
+import json
 
 parser = argparse.ArgumentParser("demo_sequr_key_gen.py")
 parser.add_argument(
-  "--url", 
+  "--qispace_meta",
   required=True,
-  dest="url",
-  help="URL for QiSpace Enterprise API. ex: https://enterprise.staging.qispace.info/kds/api/v1",
+  dest="qispace_meta",
+  help="path to qispace meta .json file, provided by Quantropi",
   type=str
 )
 parser.add_argument(
-  "--token", 
-  required=True,
-  dest="token",
-  help="Device token generated from QiSpace Enterprise",
-  type=str
-)
-parser.add_argument(
-  "--key_size", 
-  dest="key_size",
-  help="Key size to generate",
-  default=1024,
+  "--key_size_bits", 
+  dest="key_size_bits",
+  help="Key size to generate (in bits, defaults: 256)",
+  default=256,
   type=int
 )
 args = parser.parse_args()
 
 #########
 # Initialize device
-sequr_util = SequrUtil({
-  "url": args.url,
-  "device_token": args.token,
-})
+qispace_meta_content = json.load(open(args.qispace_meta))
+sequr_util = SequrUtil(qispace_meta_content)
 #########
 
-print("")
-
 #########
-# Generates new QK
-key_id, key_content = sequr_util.key_gen(1024)
-key_hex_string = hexlify(key_content).decode('utf-8')
-print(f"--- Generated QK with key_id {key_id}")
-print(f"------ key hex: { key_hex_string[0:10] }...{ key_hex_string[len(key_hex_string)-10:len(key_hex_string)] }")
+# Generate new key
+key_id, raw_key = sequr_util.key_gen(args.key_size_bits / 8)
+key_hex_string = hexlify(raw_key, " ").decode('utf-8')
+print("------------------------")
+print(f"Key generation successful")
+print(f"Key ID: {key_id}")
+if len(key_hex_string) > 10*3:
+  print(f"Key: {key_hex_string[0:5*3]} ... {key_hex_string[len(key_hex_string)-5*3:len(key_hex_string)]}")
+else:
+  print(f"Key: {key_hex_string}")
+print("------------------------")
 #########
-
-print("")
