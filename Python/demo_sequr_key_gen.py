@@ -10,7 +10,7 @@ parser.add_argument(
   "--qispace_meta",
   required=True,
   dest="qispace_meta",
-  help="path to qispace meta .json file, provided by Quantropi",
+  help="Path to qispace meta .json file, provided by Quantropi Inc",
   type=str
 )
 parser.add_argument(

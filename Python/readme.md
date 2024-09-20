@@ -3,9 +3,9 @@
 ## Sequr
 
 ### Setup
-  1. Place your Qeep `.whl` library file under `lib` folder. If you do not have one, please contact Quantropi.
+  1. Place your Qeep `.whl` library file under `lib` folder. If you do not have one, please contact Quantropi Inc.
   1. Install demo dependencies and libraries: `./install.sh`
-  1. Have your qispace meta config `.json` file from Quantropi ready. If you do not have one, please contact Quantropi.
+  1. Have your qispace meta config `.json` file from Quantropi Inc ready. If you do not have one, please contact Quantropi Inc.
 
 ### Running the demo
 
@@ -17,7 +17,7 @@
         options:
           -h, --help            show this help message and exit
           --qispace_meta QISPACE_META
-                                path to qispace meta .json file, provided by Quantropi
+                                Path to qispace meta .json file, provided by Quantropi Inc
           --key_size_bits KEY_SIZE_BITS
                                 Key size to generate (in bits, defaults: 256)
         ```
@@ -37,7 +37,7 @@
         options:
           -h, --help            show this help message and exit
           --qispace_meta QISPACE_META
-                                path to qispace meta .json file, provided by Quantropi
+                                Path to qispace meta .json file, provided by Quantropi Inc
           --key_id KEY_ID       Key ID to query
         ```
       - You might get an output as bellow:
