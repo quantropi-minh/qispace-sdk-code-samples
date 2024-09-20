@@ -12,7 +12,7 @@
   1. **Generate key demo:**
       - Execute the `demo_sequr_key_gen.py` with the bellow aruments:
         ```
-        usage: demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META [--key_size_bits KEY_SIZE_BITS]
+        usage: ./demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META [--key_size_bits KEY_SIZE_BITS]
 
         options:
           -h, --help            show this help message and exit
@@ -32,7 +32,7 @@
   1. **Query key demo:**
       - Execute the `demo_sequr_key_query.py` with the bellow aruments:
         ```
-        usage: demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META --key_id KEY_ID
+        usage: ./demo_sequr_key_gen.py [-h] --qispace_meta QISPACE_META --key_id KEY_ID
 
         options:
           -h, --help            show this help message and exit
